@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Mobile Cart</title>
+    <link rel="icon" href="../images/mobile-cart.jpg">
+    <link rel="stylesheet" type="text/css" href="../css/customer.css">
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../lib/jquery-ui-1.11.4.custom/jquery-ui.css">
+
+    <script type="text/javascript" src="../js/customerHome.js"></script>
+    <script type="text/javascript" src="../js/customerAccount.js"></script>
+    <script type="text/javascript" src="../js/customerOrders.js"></script>
+    <script type="text/javascript" src="../js/customerCart.js"></script>
+    <script type="text/javascript" src="../js/productDetails.js"></script>
+</head>
+<body>
+    <div class="main-header">
+        <button class="category-btn" id="category-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="logo">
+            <img src="../images/mobile-cart-icon.jpg" height="50px"/>
+            <h3>MobileCart</h3>
+    <div style="clear: both"></div>
+    </div>
+    <div class="header-options">
+
+        <button class="nav-btn" id="nav-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul>
+            <li id="my-account"><span class="my-icon ui-icon ui-icon-person"></span><a>My Account</a></li>
+            <li id="my-orders"><span class="my-icon ui-icon ui-icon-suitcase"></span><a>My Orders</a></li>
+            <li id="my-cart">
+                <span class="my-icon ui-icon ui-icon-cart"></span>
+                <a style="float: left;float: left;margin: 0;padding: 0 0 0 10px;">My Cart</a>
+                <span id="item-in-cart"></span>
+            </li>
+            <li id="logout"><a>Logout</a></li>
+        </ul>
+    </div>
+    <div style="clear: both;"></div>
+    </div>
+
+    <div class="ui-widget silentMessage" style="visibility: hidden;width: 300px; margin: 0 auto;">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;height: 43px;font-size: 15px;border: 1px solid #AFD5F0;">
+            <p>
+                <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+                <span class="message"></span>
+            </p>
+        </div>
+    </div>
+
+    <div id="tab-contents">
+        <div id="homePage" class="active">
+            <div class="filter">
+                <p class="filter-header">Browse</p>
+                <form id="searchOptions" action="javascript:void(0)">
+                    <div>
+                        <input id="searchInput" class="searchInput" type="search" placeholder="Search within mobiles" name="searchTerm">
+                        <div style="display: inline;position: relative"><input id="searchTermBtn" type="button" class="searchBtn"></div>
+                    </div>
+                    <div class="searchByOperatingSystem">
+                        <p class="category-name">Operating System</p>
+                        <ul class="OSList"></ul>
+                    </div>
+                    <div class="searchByBrands">
+                        <p class="category-name">Brand</p>
+                        <ul class="brandList"></ul>
+                    </div>
+                </form>
+            </div>
+            <div class="filterResults not-active">
+                Search Results
+                <div class="filterResultsRows"></div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div id="myOrders" class="not-active">
+            <div id="orderDetails"></div>
+
+        </div>
+        <div id="myAccount" class="not-active">
+            My Account
+            <div id="myAccountTabs">
+                <form id="updateCustomerForm">
+                    <ul>
+                        <li><a href="#personalInformation">Personal Information</a></li>
+                        <li><a href="#contactInformation">Contact Information</a></li>
+                        <li><a href="#creditCardInformation">Credit Card Information</a></li>
+                        <li><a href="#passwordInformation"> Change Password</a></li>
+                    </ul>
+                    <div id="personalInformation">
+                        <h3>Personal Information</h3>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div>Name<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="customerName" name="customerName" type="text" class="inline-form-element" required pattern="^[a-zA-Z0-9]*\S.*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div>Gender</div>
+                            <div>
+                                <select id="gender" name="gender" class="inline-form-element">
+                                    <option value="">Please select a Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                                <span class="errorMessage"></span>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div>Username<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="username" name="username" type="text" class="inline-form-element" required pattern="^[a-zA-Z0-9]*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+
+                        </div>
+                        <input id="updatePersonalInfo" class="updateCustomer" type="button" value="SAVE CHANGES"/>
+                    </div>
+                    <div id="contactInformation">
+                        <h3>Contact Information</h3>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div>Email Address<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="emailAddress" name="emailAddress" type="email" class="inline-form-element" required/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Contact Number</div>
+                            <div>
+                                <input id="contactNumber" name="contactNumber" type="tel" placeholder="XXX-XXX-XXXX" class="inline-form-element" maxlength="12" pattern="^\d{3}-\d{3}-\d{4}$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Address<span class="required-field"> *</span></div>
+                            <div>
+                                <textarea id="address" name="address" class="inline-form-element" required></textarea>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Zipcode<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="zipcode" name="zipcode" type="number" placeholder="XXXXX" class="inline-form-element" required min="10000" max="99999"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <input id="updateContactInfo" class="updateCustomer" type="button" value="SAVE CHANGES"/>
+                    </div>
+                    <div id="creditCardInformation">
+                        <h3>Credit Card Information</h3>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div>Card Number<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="creditCardNumber" name="creditCardNumber" type="number" class="inline-form-element" min="1000000000000000" max="9999999999999999" required/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Card Name<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="creditCardName" name="creditCardName" type="text" class="inline-form-element" required pattern="^[a-zA-Z0-9]*\S.*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Card Expiry<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="creditCardExpiry" name="creditCardExpiry" type="month" class="inline-form-element" required/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <input id="updateCreditCardInfo" class="updateCustomer" type="button" value="SAVE CHANGES"/>
+                    </div>
+                </form>
+                <form id="updatePasswordForm">
+                    <div id="passwordInformation">
+                        <h3>Change Password</h3><span class="errorMessage mainErrorMessage"></span>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div>Old Password<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="oldPassword" name="oldPassword" type="password"  class="inline-form-element" required pattern="^[a-zA-Z0-9]*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>New Password<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="newPassword" name="newPassword" type="password"  class="inline-form-element" required pattern="^[a-zA-Z0-9]*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>Confirm New Password<span class="required-field"> *</span></div>
+                            <div>
+                                <input id="confirmNewPassword" name="confirmNewPassword" type="password"  class="inline-form-element" required pattern="^[a-zA-Z0-9]*$"/>
+                                <span class="errorMessage"></span>
+                            </div>
+                        </div>
+                        <input id="updatePasswordInfo" class="updateCustomer" type="button" value="SAVE CHANGES"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="myCart" class="not-active">
+            <div id="cartDetails"></div>
+        </div>
+        <div id="mobileDetails" class="not-active">
+            <div id="mobileDetailsBody" class="mobileDetailsBody"></div>
+            <div id="mobileSuggestion" class="mobileSuggestionBody">
+                <div id="suggestionMessage"></div>
+                <div class="mobileSuggestionRow"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal"></div>
+</body>
+</html>
