@@ -10,7 +10,7 @@ Project Video - https://www.youtube.com/watch?v=aZmkepUKuhs
 	- Add/Delete/Update Users
 	- Users can be administrators/employees/managers with access privileges
 	- Administrators manage users and their access control
-  - Employees maintain inventory of mobile phones, categories and their sales
+  	- Employees maintain inventory of mobile phones, categories and their sales
 	- Managers can view reports of products,sales, their orders and users
 
 - Customer side features include:
@@ -23,8 +23,8 @@ Project Video - https://www.youtube.com/watch?v=aZmkepUKuhs
 
 - Technical Details
 	- Implemented using PHP, Apache, Code Igniter, HTML5, JavaScript, CSS
-  - Database: MySQL
+  	- Database: MySQL
 	- PHP Framework: CodeIgniter
-  - Javascript Framework: Angular.js
+  	- Javascript Framework: Angular.js
 	- JavaScript Libraries: jQuery, jQuery UI
 	- Responsive UI using CSS media queries
